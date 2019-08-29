@@ -28,15 +28,7 @@ def test_no_phone():
 def test_no_password():
     driver.get("https://pr.kargo.tech/shipper/welcome/login")
     driver.find_element_by_id("render_textfield").click()
-    # find element using css selector
-    # links = driver.find_elements_by_css_selector('.content-link.spf-link.yt-uix-sessionlink.spf-link')
     driver.find_element_by_tag_name('body').click()
-
-    # create a list and chose a random link
-    # l = links[randint(0, len(links) - 1)]
-
-    # click link
-    # l.click()
     try:
         driver.find_elements_by_xpath("//*[contains(text(), 'Masukkan password')]")
     except NoSuchElementException:

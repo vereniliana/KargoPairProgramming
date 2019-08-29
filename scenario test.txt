@@ -1,0 +1,36 @@
+given: login page
+when: click "Lupa password?"
+then: go to page forgetpassword page
+
+given: login page
+when: type phone number less than 9 digits
+then: show error "Format nomor telepon tidak valid"
+
+given: login page
+when: type phone number more than 11 digits
+then: show error "Format nomor telepon tidak valid"
+
+given: login page
+when: click back button
+then: go to welcome shipper page
+
+given: login page with state password hidden
+when: click eye button
+then: show password
+
+given: login page with state password show
+when: click eye button
+then: hide password
+
+given: login page
+when: type first digit phone number beside 8
+then: number does not show
+
+given: wrong phone number
+when: click "masuk" button
+then: show error "Email atau nomor telepon Anda tidak terdaftar"
+
+given: right phone number, wrong password
+when: click "masuk" button
+then: show error "Masukkan password yang benar"
+
