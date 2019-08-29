@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException        
+
 import time 
 
 driver = webdriver.Chrome("C:/Users/veren_p0omp/Downloads/chromedriver.exe")
@@ -11,13 +13,21 @@ def site_login():
     time.sleep(10)
     url = driver.current_url
     if (url == "https://pr.kargo.tech/shipper/welcome/home"):
-        print("done")
-
-site_login()
+        print("login done")
+    driver.quit()
 
 def test_no_phone():
     driver.get("https://pr.kargo.tech/shipper/welcome/login")
-    driver.find_element_by_id("button_component-button").click()
-    a = driver.find_elements_by_xpath("//*[contains(text(), 'Masukkan nomor telepon')]")
+    driver.find_element_by_id("render_textfield").click()
+    try:
+        driver.find_elements_by_xpath("//*[contains(text(), 'Masukkan nomor telepon')]")
+    except NoSuchElementException:
+        return False
+    return True
 
-# test_no_phone()
+if (test_no_phone()):
+    print ("test no phone done")
+else:
+    print ("test no phone failed")
+
+site_login()
